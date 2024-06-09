@@ -1,7 +1,10 @@
-name: Run Unit Tests
+name: Unit Tests After Build
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
@@ -14,7 +17,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
+        working-directory: simple-npm-project
         run: npm install
 
-      - name: Run unit tests
+      - name: Run Jest tests
+        working-directory: simple-npm-project
         run: npm test
+
+      # Create artifact
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: simple-npm-project/test-results
