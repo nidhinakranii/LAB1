@@ -13,6 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Navigate to project directory
+        run: cd simple-npm-project
+
       - name: Install dependencies
         run: npm install
 
