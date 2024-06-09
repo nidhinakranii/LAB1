@@ -13,11 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Navigate to project directory
-        run: cd simple-npm-project
-
       - name: Install dependencies
-        run: npm install
+        run: npm install --prefix simple-npm-project
 
       - name: Run Jest tests
-        run: npm test
+        run: npm test --prefix simple-npm-project
