@@ -12,13 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install dependencies
-        working-directory: Lab1
+        working-directory: simple-npm-project
         run: npm install
 
       - name: Run unit tests
-        working-directory: Lab1
-        run: npm run test
+        working-directory: simple-npm-project
+        run: npm test
 
       - name: Style checks
-        working-directory: Lab1
+        working-directory: simple-npm-project
         run: npm run style
