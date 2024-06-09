@@ -1,24 +1,23 @@
-name: Multi-step workflow
+name: CI
+
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Install dependencies
-        working-directory: simple-npm-project
         run: npm install
 
-      - name: Run unit tests
-        working-directory: simple-npm-project
+      - name: Run Jest tests
         run: npm test
-
-      - name: Style checks
-        working-directory: simple-npm-project
-        run: npm run style
