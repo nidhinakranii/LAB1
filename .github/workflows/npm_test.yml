@@ -16,11 +16,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Change directory to simple-npm-project
-        run: cd simple-npm-project && ls
-
       - name: Install dependencies
+        working-directory: simple-npm-project
         run: npm install
 
       - name: Run Jest tests
+        working-directory: simple-npm-project
         run: npm test
