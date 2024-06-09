@@ -1,20 +1,24 @@
-name: NPM Test Workflow
-
+name: Multi-step workflow
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v4
       - name: Install dependencies
-        run: npm install --prefix simple-npm-project
+        working-directory: Lab1
+        run: npm install
 
-      - name: Run Jest tests
-        run: npm test --prefix simple-npm-project
+      - name: Run unit tests
+        working-directory: Lab1
+        run: npm run test
+
+      - name: Style checks
+        working-directory: Lab1
+        run: npm run style
